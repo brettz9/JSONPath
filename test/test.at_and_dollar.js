@@ -19,6 +19,12 @@ var t1 = {
   }
 };
 
+var t2 = [
+  3, 4, 5
+];
+
+var t3 = {};
+
 module.exports = testCase({
 
     // ============================================================================
@@ -44,6 +50,42 @@ module.exports = testCase({
         test.strictEqual(t1.$['@'], jsonpath({json: t1, path: '$.$.@'})[0]);
         test.strictEqual(undefined, jsonpath({json: t1, path: '\\@'})[1]);
 
+        test.done();
+    },
+
+    // ============================================================================
+    '$.': function (test) {
+    // ============================================================================
+        var expected = t1.$;
+        var result = jsonpath({json: t1, path: '$.', wrap: false});
+        test.deepEqual(expected, result);
+        test.done();
+    },
+
+    // ============================================================================
+    '$[0]': function (test) {
+    // ============================================================================
+        var expected = t2[0];
+        var result = jsonpath({json: t2, path: '$[0]', wrap: false});
+        test.deepEqual(expected, result);
+        test.done();
+    },
+
+    // ============================================================================
+    '$.[0]': function (test) {
+    // ============================================================================
+        var expected = 3;
+        var result = jsonpath({json: t3, path: '$.[0]', flatten: true, wrap: false});
+        test.deepEqual(expected, result);
+        test.done();
+    },
+
+    // ============================================================================
+    "$.['prop']": function (test) {
+    // ============================================================================
+        var expected = 3;
+        var result = jsonpath({json: t3, path: "$.['prop']", flatten: true, wrap: false});
+        test.deepEqual(expected, result);
         test.done();
     }
 });
