@@ -14,7 +14,7 @@ const supportsNodeVM = function () {
 const {hasOwnProperty: hasOwnProp} = Object.prototype;
 
 /**
-* @typedef {null|boolean|number|string|PlainObject|GenericArray} JSONObject
+* @typedef {null|boolean|number|string|object<string, JSON>|JSON[]} JSON
 */
 
 /**
@@ -141,7 +141,7 @@ class NewError extends Error {
 /**
 * @typedef {PlainObject} ReturnObject
 * @property {string} path
-* @property {JSONObject} value
+* @property {JSON} value
 * @property {PlainObject|GenericArray} parent
 * @property {string} parentProperty
 */
@@ -156,7 +156,7 @@ class NewError extends Error {
 
 /**
 * @callback OtherTypeCallback
-* @param {JSONObject} val
+* @param {JSON} val
 * @param {string} path
 * @param {PlainObject|GenericArray} parent
 * @param {string} parentPropName
@@ -379,7 +379,7 @@ JSONPath.prototype._handleCallback = function (fullRetObj, callback, type) {
 /**
  *
  * @param {string} expr
- * @param {JSONObject} val
+ * @param {JSON} val
  * @param {string} path
  * @param {PlainObject|GenericArray} parent
  * @param {string} parentPropName
