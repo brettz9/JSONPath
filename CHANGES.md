@@ -1,5 +1,10 @@
 # CHANGES for jsonpath-plus
 
+## ?
+
+- Linting: As per latest ash-nazg
+- npm: Update devDeps.
+
 ## 5.0.5 (2021-04-09)
 
 - Fix: Avoid cache corruption when the returned structure is modified.
